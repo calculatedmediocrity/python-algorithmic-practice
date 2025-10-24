@@ -1,7 +1,7 @@
 import pytest
-from solution import contains_duplicate
+from solution import contains_duplicate_set, contains_duplicate_sort
 
-FUNCTIONS = [contains_duplicate]
+FUNCTIONS = [contains_duplicate_set, contains_duplicate_sort]
 
 # Параметры для тестов: (nums, expected, label)
 
