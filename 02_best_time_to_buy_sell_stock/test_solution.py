@@ -1,6 +1,7 @@
 import pytest
-from solution import best_time_to_buy_sell_bruteforce
+from solution import best_time_to_buy_sell_bruteforce, best_time_to_buy_sell_optimal
 
+FUNCTIONS = [best_time_to_buy_sell_bruteforce, best_time_to_buy_sell_optimal]
 # Параметры для тестов: (prices, expected, label)
 # Базовые тесты (взяты из примеров LeetCode)
 BASIC_CASES = [
@@ -44,10 +45,11 @@ POSITIVE_TEST_CASES = BASIC_CASES + EXTENDED_CASES + BOUNDARY_CASES
 
 
 class TestBestTimeToBuySell:
+    @pytest.mark.parametrize("func", FUNCTIONS)
     @pytest.mark.parametrize("prices,expected,label", POSITIVE_TEST_CASES)
-    def test_positive_cases(self, prices, expected, label):
+    def test_positive_cases(self, func, prices, expected, label):
         """Проверка корректных случаев"""
-        result = best_time_to_buy_sell_bruteforce(prices)
+        result = func(prices)
 
         """Проверка, что результат - целое число"""
         assert isinstance(result, int), f"Результат должен быть int, получено {type(result)}"
